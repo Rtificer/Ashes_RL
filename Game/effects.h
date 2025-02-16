@@ -19,17 +19,17 @@ class EffectBase {
 template <uint8_t StepQuantity, uint8_t TotalCostSymbols>
 class Effect : public EffectBase {
     public:
-        virtual ~Effect() = default;
         bool isAbility;
-
         std::array<uint8_t, TotalCostSymbols> Cost;
 
-        std::array<std::unique_ptr<EffectStep>, StepQuantity> Steps = {};
-        bool Resolve() {
+        std::array<EffectStep, StepQuantity> Steps;  
 
-            //TODO: resolve costs
-            for (std::unique_ptr<EffectStep> EffectStep : Steps) {
-                EffectStep->resolve();
+        constexpr Effect(std::array<EffectStep, StepQuantity> steps, bool isability = false)
+            : Steps(steps), isAbility(is_ability) {}
+
+        bool Resolve() {
+            for (EffectStep& step : Steps) {
+                step.resolve();
             }
         }
 };
@@ -39,7 +39,23 @@ class Effect : public EffectBase {
 class SearchDiscardForAlly : public EffectStep {
     public:
         bool resolve() {
-            return false;
+            return true;
             //Search Discard for ally.
+        }
+};
+
+class RemoveAllWoundTokensFromTargetUnit : public EffectStep {
+    public:
+        bool resolve() {
+            return true;
+            //Search Remove all wound tokens from target unit.
+        }
+};
+
+class RemoveTwoWoundTokensFromTargetPhoenixborn : public EffectStep {
+    public:
+        bool resolve() {
+            return true;
+            //Search Remove two wound tokens from target phoenixborn.
         }
 };
