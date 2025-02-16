@@ -7,89 +7,59 @@ public:
     virtual ~CardBase() = default;
 };
 
-template <uint8_t EffectQuantity>
+template <uint8_t EffectQuantity, uint8_t TotalPlayCostSymbols>
 class Card : public CardBase {
 public:
-    // 0 = Discard, 1 = Battlefield, 2 = Spellboard, 3 = Unit, 4 = Phoenixborn, 5 = Not Assigned Error
-    uint8_t Placement;
-    std::array<EffectBase, EffectQuantity> Effects;
+    //0 = Ready Spell, 1 = Action Spell, 2 = Alteration Spell, 3 = Conjured Alteration Spell, 4 = Ally, 5 = Conjuration(unit), 255 = Not Assigned Error
+    const uint8_t Type;
+    //0 = Discard, 1 = Battlefield, 2 = Spellboard, 3 = Unit, 4 = Phoenixborn, 255 = Not Assigned Error
+    const uint8_t Placement;
+    const std::array<EffectBase, EffectQuantity> Effects;
 
-    constexpr Card(std::array<EffectBase, EffectQuantity> effects, uint8_t placement = 5)
-        : Effects(effects), Placement(placement) {}
-};
+    const std::array<uint8_t, TotalPlayCostSymbols> PlayCost;
 
+    // --- Unit Specific ---
+    const uint8_t StartingAttackValue;
+    const uint8_t StartingLifeValue;
+    const uint8_t StartingRecoverValue;
 
+    // --- Conjuration Specific ---
+    const uint8_t ConjurationLimit;
 
-template <uint8_t EffectQuantity, uint8_t TotalPlayCostSymbols>
-class Spell : public Card<EffectQuantity> {
-public:
-    std::array<uint8_t, TotalPlayCostSymbols> PlayCost;
-};
+    // --- Phoenixborn Specific ---
+    const uint8_t BattleFieldLimit;
+    const uint8_t SpellBoardLimit;
 
-template <uint8_t EffectQuantity, uint8_t TotalPlayCostSymbols>
-class ReadySpell : public Spell<EffectQuantity, TotalPlayCostSymbols> {
-public:
-    constexpr ReadySpell() : Card<EffectQuantity> {
-        //Placement
-        2
-    }
-};
+    constexpr Card(
+        //0 = Ready Spell, 1 = Action Spell, 2 = Alteration Spell, 3 = Conjured Alteration Spell, 4 = Ally, 5 = Conjuration(unit), 255 = Not Assigned Error
+        uint8_t type = 255,
+        //0 = Discard, 1 = Battlefield, 2 = Spellboard, 3 = Unit, 4 = Phoenixborn, 255 = Not Assigned Error
+        uint8_t placement = 255,
+        std::array<EffectBase, EffectQuantity> effects, 
 
-template <uint8_t EffectQuantity, uint8_t TotalPlayCostSymbols>
-class ActionSpell : public Spell<EffectQuantity, TotalPlayCostSymbols> {
-public:
-    constexpr ActionSpell() : Card<EffectQuantity> {
-        //Placement
-        0
-    }
-};
+        std::array<uint8_t, TotalPlayCostSymbols> playcost;
 
-template <uint8_t EffectQuantity, uint8_t TotalPlayCostSymbols>
-class AlterationSpell : public Spell<EffectQuantity, TotalPlayCostSymbols> {
-public:
-    constexpr AlterationSpell() : Card<EffectQuantity> {
-        //Placement
-        3
-    }
-};
+        //254 = Not applicable
+        // --- Unit (and sort of Phoenixborn) Specific ---
+        uint8_t startingattackvalue = 254;
+        uint8_t startinglifevalue = 254;
+        uint8_t startingrecovervalue = 254;
 
+        // --- Conjuration Specific ---
+        uint8_t conjurationlimit = 254;
 
+        // --- Phoenixborn Specific ---
+        uint8_t battlefieldlimit = 254;
+        uint8_t spellboardlimit = 254;
 
-template <uint8_t EffectQuantity>
-class Unit : public Card<EffectQuantity> {
-public:
-    constexpr Unit() : Card<EffectQuantity>{ 
-        //Placement
-        1
-    }
-
-    uint8_t startingAttackValue;
-    uint8_t startingLifeValue;
-    uint8_t startingRecoverValue;
-};
-
-template <uint8_t EffectQuantity, uint8_t TotalPlayCostSymbols>
-class Ally : public Unit<EffectQuantity> {
-public:
-    std::array<uint8_t, TotalPlayCostSymbols> PlayCost;
-};
-
-template <uint8_t EffectQuantity>
-class Conjuration : public Unit<EffectQuantity> {
-public:
-    uint8_t conjurationLimit;
-};
-
-
-
-template <uint8_t EffectQuantity>
-class Phoenixborn : public Card<EffectQuantity> {
-public:
-    constexpr Phoenixborn() : Card<EffectQuantity> {
-        4; 
-    }
-
-    uint8_t StartingLifeValue;
-    uint8_t BattleFieldLimit;
-    uint8_t SpellBoardLimit;
+    ) : 
+    Type(type), Placement(placement), Effects(effects),
+    PlayCost(playcost)
+    StartingAttackValue(startingattackvalue), 
+    StartingLifeValue(startinglifevalue), 
+    StartingRecoverValue(startingrecovervalue),
+    ConjurationLimit(conjurationlimit),
+    BattleFieldLimit(battlefieldlimit),
+    SpellBoardLimit(spellboardlimit)
+    {}
 };

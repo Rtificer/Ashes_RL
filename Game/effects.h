@@ -19,10 +19,10 @@ class EffectBase {
 template <uint8_t StepQuantity, uint8_t TotalCostSymbols>
 class Effect : public EffectBase {
     public:
-        bool isAbility;
-        std::array<uint8_t, TotalCostSymbols> Cost;
+        const bool IsAbility;
+        const std::array<uint8_t, TotalCostSymbols> Cost;
 
-        std::array<EffectStep, StepQuantity> Steps;  
+        const std::array<EffectStep, StepQuantity> Steps;  
 
         constexpr Effect(std::array<EffectStep, StepQuantity> steps, bool isability = false)
             : Steps(steps), isAbility(is_ability) {}

@@ -10,10 +10,12 @@ class PlayBoundSoul : public Effect<1, 0> {
         ) {}
 };
 
-class Bound_Soul : public ActionSpell<1, 2> {
+class Bound_Soul : public Card<1, 2> {
     public:
-        Bound_Soul() {
-            PlayCost = {0, 9};
-            Effects[0] = std::make_unique<PlayBoundSoul>();
-        }
+        constexpr Bound_Soul() : Card<1, 2> (
+            /*Type:*/ 1,
+            /*Placement:*/ 0,
+            /*Effect(s):*/ {PlayBoundSoul()},
+            /*Play Cost:*/ {0, 9}
+        )
 };

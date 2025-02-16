@@ -10,13 +10,13 @@ class PlayHeal : public Effect<2, 0> {
         ) {}
     };
 
-class Heal : public ActionSpell<1, 2> {
+class Heal : public Card<1, 2> {
     public:
-        constexpr Heal() : ActionSpell<1, 2>(
-            //Cost Vector
-            {1, 15},
-            //Effects
-            {PlayHeal()}
+        constexpr Heal() : Card<1, 2>(
+            /*Type:*/ 1,
+            /*Placement:*/ 0,
+            /*Effect(s):*/ {PlayHeal()},
+            /*Play Cost:*/ {1, 15}
         ) {}
 };
         
