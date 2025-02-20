@@ -17,5 +17,5 @@ class Bound_Soul : public Card<1, 2> {
             /*Placement:*/ 0,
             /*Effect(s):*/ {PlayBoundSoul()},
             /*Play Cost:*/ {0, 9}
-        )
+        ) {}
 };
