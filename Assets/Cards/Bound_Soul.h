@@ -3,10 +3,9 @@
 class PlayBoundSoul : public Effect<1, 0> {
     public:
         constexpr PlayBoundSoul() : Effect<1, 0>(
-            //EffectSteps
-            {SearchDiscardForAlly()}, 
-            //IsAbility?
-            false
+            /*Is Ability:*/ false,
+            /*Play Cost:*/ {},
+            /*Effect Step(s):*/ {SearchDiscardForAlly()}
         ) {}
 };
 
@@ -16,6 +15,6 @@ class Bound_Soul : public Card<1, 2> {
             /*Type:*/ 1,
             /*Placement:*/ 0,
             /*Effect(s):*/ {PlayBoundSoul()},
-            /*Play Cost:*/ {0, 9}
-        )
+            /*Play Cost:*/ {0, 10}
+        ) {}
 };
