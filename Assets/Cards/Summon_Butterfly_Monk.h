@@ -1,6 +1,6 @@
 #include "../../Game/card.h"
 
-class ActivateSummon_Butterfly_Monk : public Effect<1, 3> {
+const class ActivateSummon_Butterfly_Monk : public Effect<1, 3> {
     public:
         constexpr ActivateSummon_Butterfly_Monk() : Effect<1, 3>(
             /*Is Ability:*/ false,
@@ -9,7 +9,7 @@ class ActivateSummon_Butterfly_Monk : public Effect<1, 3> {
         ) {}
 };
 
-class Summon_Butterfly_Monk : public Card<1, 1> {
+const class Summon_Butterfly_Monk : public Card<1, 1> {
     public:
         constexpr Summon_Butterfly_Monk() : Card<1, 1> (
             /*Type:*/ 0,

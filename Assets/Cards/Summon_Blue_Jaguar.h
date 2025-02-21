@@ -1,6 +1,6 @@
 #include "../../Game/card.h"
 
-class ActivateSummon_Blue_Jaguar : public Effect<1, 4> {
+const class ActivateSummon_Blue_Jaguar : public Effect<1, 4> {
     public:
         constexpr ActivateSummon_Blue_Jaguar() : Effect<1, 4>(
             /*Is Ability:*/ false,
@@ -9,7 +9,7 @@ class ActivateSummon_Blue_Jaguar : public Effect<1, 4> {
         ) {}
 };
 
-class Summon_Blue_Jaguar : public Card<1, 1> {
+const class Summon_Blue_Jaguar : public Card<1, 1> {
     public:
         constexpr Summon_Blue_Jaguar() : Card<1, 1> (
             /*Type:*/ 0,

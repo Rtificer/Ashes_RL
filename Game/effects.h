@@ -1,12 +1,12 @@
 #include <cstdint>
 #include <array>
 #include <memory>
-#include "gamestate.h"
+#include "game.h"
 
 class EffectStep {
     public:
-        virtual ~EffectStep() = default;
-        bool resolve() {
+        template<uint8_t PlayerCount>
+        constexpr bool resolve(Game<PlayerCount> game) {
             return false;
             //Resolve Effect Step
         }
@@ -31,9 +31,10 @@ class Effect : public EffectBase {
         ) : 
         isAbility(is_ability), Cost(cost), Steps(steps) {}
 
-        bool Resolve() {
+        template<uint8_t PlayerCount>
+        constexpr bool Resolve(Game<PlayerCount> game) {
             for (EffectStep& step : Steps) {
-                step.resolve();
+                step.resolve(game);
             }
         }
 };
@@ -42,7 +43,8 @@ class Effect : public EffectBase {
 
 class SearchDiscardForAlly : public EffectStep {
     public:
-        bool resolve() {
+        template<uint8_t PlayerCount>
+        bool resolve(Game<PlayerCount> game) {
             return true;
             //Search Discard for ally.
         }
@@ -50,7 +52,8 @@ class SearchDiscardForAlly : public EffectStep {
 
 class RemoveAllWoundTokensFromTargetUnit : public EffectStep {
     public:
-        bool resolve() {
+        template<uint8_t PlayerCount>
+        bool resolve(Game<PlayerCount> game) {
             return true;
             //Search Remove all wound tokens from target unit.
         }
@@ -58,7 +61,8 @@ class RemoveAllWoundTokensFromTargetUnit : public EffectStep {
 
 class RemoveTwoWoundTokensFromTargetPhoenixborn : public EffectStep {
     public:
-        bool resolve() {
+        template<uint8_t PlayerCount>
+        bool resolve(Game<PlayerCount> game) {
             return true;
             //Search Remove two wound tokens from target phoenixborn.
         }
@@ -66,14 +70,17 @@ class RemoveTwoWoundTokensFromTargetPhoenixborn : public EffectStep {
 
 class ChangeTwoDiceInYourActivePoolToASideOfYourChoice : public EffectStep {
     public:
-        bool resolve() {
+        template<uint8_t PlayerCount>
+        bool resolve(Game<PlayerCount> game) {
+            
             return true;
         }
 };
 
 class PlaceBlue_JaguarOntoYourBattlefield : public EffectStep {
     public:
-        bool resolve() {
+        template<uint8_t PlayerCount>
+        bool resolve(Game<PlayerCount> game) {
             //Do as named
             return true;
         }
@@ -81,7 +88,8 @@ class PlaceBlue_JaguarOntoYourBattlefield : public EffectStep {
 
 class PlaceButterfly_MonkOntoYourBattlefield : public EffectStep {
     public:
-        bool resolve() {
+        template<uint8_t PlayerCount>
+        bool resolve(Game<PlayerCount> game) {
             //Do as named
             return true;
         }

@@ -1,6 +1,6 @@
 #include "../../Game/card.h"
 
-class ActivateShiftingMist : public Effect<1, 2> {
+const class ActivateShiftingMist : public Effect<1, 2> {
     public:
         constexpr ActivateShiftingMist() : Effect<1, 2>(
             /*Is Ability:*/ false,
@@ -9,12 +9,12 @@ class ActivateShiftingMist : public Effect<1, 2> {
         ) {}
 };
 
-class Shifting_Mist : public Card<1, 2> {
+const class Shifting_Mist : public Card<1, 2> {
     public:
         constexpr Shifting_Mist() : Card<1, 2> (
             /*Type:*/ 0,
             /*Placement:*/ 2,
             /*Effect(s):*/ {ActivateShiftingMist()},
-            /*Play Cost:*/ {0, 11}
+            /*Play Cost:*/ {0, 12}
         ) {}
 }; 

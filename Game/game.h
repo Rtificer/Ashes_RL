@@ -1,4 +1,6 @@
-#include "gamestate.h"
+#include <cstdint>
+#include <array>
+
 
 const enum OriginEffectZone : uint8_t {
     BATTLEFIELD,
@@ -37,6 +39,8 @@ struct GameState {
         uint8_t FirstPlayerIndex;
         uint8_t ActivePlayerIndex;
         uint8_t CurrentAction;
+
+        std::array<ResolvingEffectStep> ResolvingEffectsStack;
 
         std::array<Player, PlayerCount> Players;
 };

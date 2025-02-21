@@ -1,6 +1,6 @@
 #include "../../Game/card.h"
 
-class PlayBoundSoul : public Effect<1, 0> {
+const class PlayBoundSoul : public Effect<1, 0> {
     public:
         constexpr PlayBoundSoul() : Effect<1, 0>(
             /*Is Ability:*/ false,
@@ -9,7 +9,7 @@ class PlayBoundSoul : public Effect<1, 0> {
         ) {}
 };
 
-class Bound_Soul : public Card<1, 2> {
+const class Bound_Soul : public Card<1, 2> {
     public:
         constexpr Bound_Soul() : Card<1, 2> (
             /*Type:*/ 1,

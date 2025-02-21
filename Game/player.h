@@ -19,6 +19,7 @@ class Player {
         std::array<CardRepresentation, MaxSpellBoardSize> SpellBoard;
         std::array<CardRepresentation, MaxBattlefieldSize> Battlefield;
 
+        uint8_t TotalActiveDice;
         std::array<uint8_t, 10> ActiveDiePool;
         std::array<uint8_t, 10> ExhaustedDiePool;
 

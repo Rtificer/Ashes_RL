@@ -1,6 +1,6 @@
 #include "../../Game/card.h"
 
-class PlayHeal : public Effect<2, 0> {
+const class PlayHeal : public Effect<2, 0> {
     public:
         constexpr PlayHeal() : Effect<2, 0>(
             /*Is Ability:*/ false,
@@ -9,7 +9,7 @@ class PlayHeal : public Effect<2, 0> {
         ) {}
     };
 
-class Heal : public Card<1, 2> {
+const class Heal : public Card<1, 2> {
     public:
         constexpr Heal() : Card<1, 2>(
             /*Type:*/ 1,
