@@ -1,8 +1,8 @@
 import os
 
 def GenerateCardIncludeHeader():
-    with open("Utils/CardRegistry.h", "w") as CardRegistry:
-        path = os.path.join(os.getcwd(), "Assets", "Cards")
+    with open(os.path.join(os.getcwd(), "Ashes_RL", "Utils", "CardRegistry.h"), "w") as CardRegistry:
+        path = os.path.join(os.getcwd(), "Ashes_RL", "Assets", "Cards")
         CardFileList = [f[:-2] for f in os.listdir(path) if f.endswith(".h")]
 
         for card in CardFileList:
@@ -13,6 +13,7 @@ def GenerateCardIncludeHeader():
 f"""
 #include <array>
 #include <memory>
+#include "../Game/card.h"
 
 //Singleton Pattern
 class CardRegistry {{
@@ -38,7 +39,7 @@ private:
         )
 
         for index, card in enumerate(CardFileList):
-            CardRegistry.write(f"        cardIDToCard[{index}] = std::make_unique<{card}>();")
+            CardRegistry.write(f"        cardIDToCard[{index}] = std::make_unique<{card}>();\n")
 
         CardRegistry.writelines(
 f"""
