@@ -3,7 +3,10 @@
 
 class CardRepresentation {
 public:
-    uint8_t cardID;
+    uint16_t cardID;
+
+    //255 = no controlling player
+    uint8_t controllingPlayerID;
 
     uint8_t exhaustionTokenCount;
     uint8_t statusTokenCount;
@@ -17,5 +20,9 @@ public:
 
     bool isGuardAvailable;
 
-    std::array<uint8_t, 60> attachedCardIDs; // Used for Battlefield
+    std::array<uint16_t, 60> attachedCardIDs; // Used for Battlefield
+
+    //Miscellaneous for the rest of the cards ever.
+    bool canBlock;
+    bool canGuard;
 };

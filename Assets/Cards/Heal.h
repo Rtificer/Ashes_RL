@@ -1,21 +1,31 @@
 #include "../../Game/card.h"
 
-const class PlayHeal : public Effect<2, 0> {
+const class PlayHeal : public Effect<0, 2> {
     public:
-        constexpr PlayHeal() : Effect<2, 0>(
+        constexpr PlayHeal() : Effect<0, 2>(
             /*Is Ability:*/ false,
             /*Play Cost:*/ {},
             /*Effect Step(s):*/ {RemoveAllWoundTokensFromTargetUnit(), RemoveTwoWoundTokensFromTargetPhoenixborn()}
         ) {}
     };
 
-const class Heal : public Card<1, 2> {
+const class Heal : public Card<2, 1> {
     public:
-        constexpr Heal() : Card<1, 2>(
+        static Heal& getInstance() {
+            static Heal instance;
+            return instance;
+        }
+
+    private:
+        constexpr Heal() : Card<2, 1>(
+            /*CardID:*/ 1,
             /*Type:*/ 1,
             /*Placement:*/ 0,
-            /*Effect(s):*/ {PlayHeal()},
-            /*Play Cost:*/ {1, 16}
+            /*Play Cost:*/ {1, 16},
+            /*Effect(s):*/ {PlayHeal()}
         ) {}
+
+        // Delete copy constructor and assignment operator
+        Heal(const Heal&) = delete;
+        Heal& operator=(const Heal&) = delete;
 };
-        

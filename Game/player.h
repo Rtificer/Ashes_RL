@@ -23,4 +23,18 @@ class Player {
         std::array<uint8_t, 10> ActiveDiePool;
         std::array<uint8_t, 10> ExhaustedDiePool;
 
+        auto GetLocation(uint8_t location) {
+            switch(location) {
+                case 0:
+                    return Hand;
+                case 1:
+                    return DiscardPile;
+                case 2:
+                    return ConjurationPile;
+                case 3:
+                    return SpellBoard;
+                case 4:
+                    return Battlefield;
+        }
+    }
 };
