@@ -1,6 +1,6 @@
 #include <cstdint>
 #include <array>
-#include <stack>
+#include <variant>
 #include "player.h"
 #include "../Utils/CardRegistry.h"
 
@@ -25,7 +25,6 @@ struct EffectStepRepresentation {
     
 };
 
-template<uint8_t PlayerCount>
 struct GameState {
     public:
         uint8_t CurrentTurn;
@@ -35,52 +34,65 @@ struct GameState {
         uint8_t ActivePlayerIndex;
         uint8_t CurrentAction;
 
-        uint8_t TotalResolvingEffects;
-        std::array<ResolvingEffectStep, 16> ResolvingEffectsStack;
-        uint8_t EndOfTurnEffectCount;
-        std::array<ResolvingEffectStep, 16> EndOfTurnEffects;
-        uint8_t EndOfRoundEffectCount;
-        std::array<ResolvingEffectStep, 16> EndOfRoundEffects;
-
-        std::array<Player, PlayerCount> Players;
+        std::array<Player, 2> Players;
 
         uint8_t LimboCardCount;
         std::array<CardRepresentation, 60> Limbo;
 };
 
-template <uint8_t PlayerCount>
 class Game {
     public:
-        GameState<PlayerCount> gamestate;
+        GameState gamestate;
 
-        GameState<PlayerCount> CaptureState() {
+        GameState CaptureState() {
             return gamestate;
         }
 
-        auto GetCardFromLocation(CardLocation location) {
-            switch(location.Zone) {
-                case 5:
-                    switch(location.CardIndex){
-                        case 0:
-                            return 
-                    }
-                case 6:
-                    if (CardIndex >= gamestate.LimboCardCount) {
+        CardBase* GetCardFromLocation(CardLocation location) {
+            if (location.Zone < 7) {
+                switch(location.Zone) {
+                    case 5:
+                        if (location.CardIndex < 8) {
+                            return CardRegistry::getInstance().getCard(location.CardIndex);
+                        } 
                         return nullptr;
-                    }
-                    return gamestate.Limbo[location.CardIndex];
-            }
-            else {
-                if (location.PlayerIndex >= PlayerCount) {
-                    return nullptr;
+                    case 6:
+                        if (location.CardIndex < gamestate.LimboCardCount) {
+                            return CardRegistry::getInstance().getCard(gamestate.Limbo[location.CardIndex].cardID);
+                        }
+                        return nullptr;
                 }
+                if (location.PlayerIndex < 3) {
+                    auto cardzone = gamestate.Players[location.PlayerIndex].GetLocation(location.Zone);
+                    //Lambda function to determine the type of the variant
+                    return std::visit([&location](auto &&arg) -> CardBase* {
+                        using T = std::decay_t<decltype(arg)>;
+                        if constexpr (std::is_same_v<T, std::array<uint8_t, 30>>) {
+                            if (location.CardIndex < 30) {
+                                return CardRegistry::getInstance().getCard(arg[location.CardIndex]);
+                            }
+                        } else if constexpr (std::is_same_v<T, std::array<uint8_t, 64>>) {
+                            if (location.CardIndex < 64) {
+                                return CardRegistry::getInstance().getCard(arg[location.CardIndex]);
+                            }
+                        } else if constexpr (std::is_same_v<T, std::array<CardRepresentation, 5>>) {
+                            if (location.CardIndex < 5) {
+                                return CardRegistry::getInstance().getCard(arg[location.CardIndex].cardID);
+                            }
+                        } else if constexpr (std::is_same_v<T, std::array<CardRepresentation, 11>>) {
+                            if (location.CardIndex < 11) {
+                                return CardRegistry::getInstance().getCard(arg[location.CardIndex].cardID);
+                            }
+                        }
+                        return nullptr;
+                    }, cardzone);
+                }   
             }
-            return gamestate.Players[location.PlayerIndex].GetLocation(location.Zone)[location.CardIndex];
+            return nullptr;
         }
-
         void AdvanceTurn() {
 
-            if (gamestate.FirstPlayerIndex == gamestate.PlayerCount) {
+            if (gamestate.FirstPlayerIndex == 2) {
                 gamestate.FirstPlayerIndex = 0;
             }
             else {
@@ -99,24 +111,4 @@ class Game {
                 gamestate.CurrentPhase++;
             }
         }
-
-        bool DealDamage(CardLocation location, uint8_t damage) {
-            //Step 1
-                //Effects that trigger "after damage is dealt" may now be used. Most effects will prevent one or more damage from being received in step 2.
-            //Step 2
-            cardrepresentation.woundTokenCount += damage;
-            if(cardrepresentation.woundTokenCount >= cardrepresentation.currentLifeValue) {
-                card = CardRegistry::getInstance().getCard(cardID);
-                
-                if (card != nullptr && card->getType() == 6) {
-                    //End the game.
-                    return true;
-                }
-
-                //Effects that trigger “after 1 or more wound tokens are placed” may now be used.
-                cardrepresentation.controllingplayerID = 255;
-
-            }
-        }
-
 };

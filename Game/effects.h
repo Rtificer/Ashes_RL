@@ -33,7 +33,7 @@ class Effect {
 class SearchDiscardForAlly : public EffectStep {
     public:
         template<uint8_t PlayerCount>
-        bool resolve(Game<PlayerCount> & game) {
+        bool resolve(Game<PlayerCount> & game) const {
             return true;
             //Search Discard for ally.
         }
@@ -42,7 +42,7 @@ class SearchDiscardForAlly : public EffectStep {
 class RemoveAllWoundTokensFromTargetUnit : public EffectStep {
     public:
         template<uint8_t PlayerCount>
-        bool resolve(Game<PlayerCount> & game) {
+        bool resolve(Game<PlayerCount> & game) const {
             return true;
             //Search Remove all wound tokens from target unit.
         }
@@ -51,7 +51,7 @@ class RemoveAllWoundTokensFromTargetUnit : public EffectStep {
 class RemoveTwoWoundTokensFromTargetPhoenixborn : public EffectStep {
     public:
         template<uint8_t PlayerCount>
-        bool resolve(Game<PlayerCount> & game) {
+        bool resolve(Game<PlayerCount> & game) const {
             return true;
             //Search Remove two wound tokens from target phoenixborn.
         }
@@ -60,8 +60,7 @@ class RemoveTwoWoundTokensFromTargetPhoenixborn : public EffectStep {
 class ChangeTwoDiceInYourActivePoolToASideOfYourChoice : public EffectStep {
     public:
         template<uint8_t PlayerCount>
-        bool resolve(Game<PlayerCount> & game) {
-            
+        bool resolve(Game<PlayerCount> & game) const {
             return true;
         }
 };
@@ -69,7 +68,7 @@ class ChangeTwoDiceInYourActivePoolToASideOfYourChoice : public EffectStep {
 class PlaceBlue_JaguarOntoYourBattlefield : public EffectStep {
     public:
         template<uint8_t PlayerCount>
-        bool resolve(Game<PlayerCount> & game) {
+        bool resolve(Game<PlayerCount> & game) const {
             //Do as named
             return true;
         }
@@ -78,7 +77,7 @@ class PlaceBlue_JaguarOntoYourBattlefield : public EffectStep {
 class PlaceButterfly_MonkOntoYourBattlefield : public EffectStep {
     public:
         template<uint8_t PlayerCount>
-        bool resolve(Game<PlayerCount> & game) {
+        bool resolve(Game<PlayerCount> & game) const {
             //Do as named
             return true;
         }
@@ -87,7 +86,7 @@ class PlaceButterfly_MonkOntoYourBattlefield : public EffectStep {
 class DealOneDamageToYourPhoenixborn : public EffectStep {
     public:
         template<uint8_t PlayerCount>
-        bool resolve(Game<PlayerCount> & game) {
+        bool resolve(Game<PlayerCount> & game) const {
             //Do as named
             return true;
         }
