@@ -1,0 +1,191 @@
+{
+    "id": 51206,
+    "entity_id": 53898,
+    "source_id": 50182,
+    "direct_share_uuid": "934f8a0a-0eb9-4592-b9ca-9c9671573881",
+    "title": "Caryatid",
+    "created": "2024-03-16T01:20:54.071815+00:00",
+    "modified": "2024-03-16T01:20:54.086611+00:00",
+    "user": {
+      "username": "Redking",
+      "badge": "4j-4"
+    },
+    "dice": [
+      {
+        "count": 3,
+        "name": "ceremonial"
+      },
+      {
+        "count": 4,
+        "name": "charm"
+      },
+      {
+        "count": 2,
+        "name": "divine"
+      },
+      {
+        "count": 1,
+        "name": "sympathy"
+      }
+    ],
+    "phoenixborn": {
+      "name": "Jessa Na Ni",
+      "stub": "jessa-na-ni",
+      "battlefield": 4,
+      "life": 19,
+      "spellboard": 4,
+      "is_legacy": false
+    },
+    "cards": [
+      {
+        "count": 2,
+        "name": "Captivate",
+        "stub": "captivate",
+        "type": "Ready Spell",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 3,
+        "name": "Channel Magic",
+        "stub": "channel-magic",
+        "type": "Action Spell",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 1,
+        "name": "Chant of Sacrifice",
+        "stub": "chant-of-sacrifice",
+        "type": "Ready Spell",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 3,
+        "name": "Dealer's Choice",
+        "stub": "dealers-choice",
+        "type": "Action Spell",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 1,
+        "name": "Essence Druid",
+        "stub": "essence-druid",
+        "type": "Ally",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 3,
+        "name": "Final Cry",
+        "stub": "final-cry",
+        "type": "Reaction Spell",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 3,
+        "name": "Playtime",
+        "stub": "playtime",
+        "type": "Alteration Spell",
+        "phoenixborn": "Jessa Na Ni",
+        "is_legacy": false
+      },
+      {
+        "count": 3,
+        "name": "Polarity Mage",
+        "stub": "polarity-mage",
+        "type": "Ally",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 1,
+        "name": "Royal Charm",
+        "stub": "royal-charm",
+        "type": "Ready Spell",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 1,
+        "name": "Summon Blood Puppet",
+        "stub": "summon-blood-puppet",
+        "type": "Ready Spell",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 3,
+        "name": "Summon Light Bringer",
+        "stub": "summon-light-bringer",
+        "type": "Ready Spell",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 3,
+        "name": "Summon Shimmer Wing",
+        "stub": "summon-shimmer-wing",
+        "type": "Ready Spell",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 3,
+        "name": "Sympathy Pain",
+        "stub": "sympathy-pain",
+        "type": "Reaction Spell",
+        "phoenixborn": null,
+        "is_legacy": false
+      }
+    ],
+    "conjurations": [
+      {
+        "count": 5,
+        "name": "Blood Puppet",
+        "stub": "blood-puppet",
+        "type": "Conjuration",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 1,
+        "name": "Eternity Flame",
+        "stub": "eternity-flame",
+        "type": "Conjuration",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 2,
+        "name": "Light Bringer",
+        "stub": "light-bringer",
+        "type": "Conjuration",
+        "phoenixborn": null,
+        "is_legacy": false
+      },
+      {
+        "count": 3,
+        "name": "Shimmer Wing",
+        "stub": "shimmer-wing",
+        "type": "Conjuration",
+        "phoenixborn": null,
+        "is_legacy": false
+      }
+    ],
+    "is_public": true,
+    "is_snapshot": true,
+    "is_legacy": null,
+    "is_red_rains": false,
+    "ashes_500_score": null,
+    "ashes_500_revision_id": null,
+    "description": "Jessa variant of original Astrea defensive burn featuring captivate. Trying playtime, but could revert to fear. Added 1x chant sac for prison matchups (looking at you@K.I.P.) and puppet pivot",
+    "first_five": [],
+    "effect_costs": [],
+    "tutor_map": {},
+    "is_saved": null,
+    "comments_entity_id": null
+  }
